@@ -6,24 +6,32 @@
 	if (hash.length > 1 && hash[0] === '#simulator') {
 		var inputs = deparam(hash[1]);
 		const queryString = new URLSearchParams({
-			units: inputs.units
-		});
-		console.log(inputs);
+			units: inputs.units,
+			projectile: inputs.projectile,
+			uniformArm: inputs.uniformArm,
+			distance: inputs.distance,
+			lengthArmShort: inputs.LengthArmShort,
+			lengthArmLong: inputs.LengthArmLong,
+			lengthSling: inputs.LengthSling,
+			lengthWeight: inputs.LengthWeight,
+			heightOfPivot: inputs.HeightOfPivot,
+			massArm: inputs.MassArm,
+			inertiaArm: inputs.InertiaArm,
+			pivotToArmCG: inputs.PivotToArmCG,
+			massWeight: inputs.MassWeight,
+			inertiaWeight: inputs.InertiaWeight,
+			massProjectile: inputs.MassProjectile,
+			projectileDiameter: inputs.ProjectileDiameter,
+			windSpeed: inputs.WindSpeed,
+			releaseAngle: inputs.ReleaseAngle
+		}).toString();
+
+		window.location.href = '/?' + queryString;
+	} else {
+		window.location.href = '/';
 	}
 
 	function deparam(querystring) {
-		// remove any preceding url and split
-		querystring = querystring.substring(querystring.indexOf('?') + 1).split('&');
-		var params = {},
-			pair,
-			d = decodeURIComponent,
-			i;
-		// march and parse
-		for (i = querystring.length; i > 0; ) {
-			pair = querystring[--i].split('=');
-			params[d(pair[0])] = d(pair[1]);
-		}
-
-		return params;
+		return Object.fromEntries(new URLSearchParams(querystring));
 	}
 </script>

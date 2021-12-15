@@ -16,6 +16,11 @@
 	export let errors: string[] = [];
 	export let units: string;
 
+	if (units === 'englishi') {
+		// distance should be shown in feet instead of inches
+		units = 'englishf';
+	}
+
 	const length = unitLabels[units].length;
 	const time = unitLabels[units].time;
 	const speed = unitLabels[units].speed;

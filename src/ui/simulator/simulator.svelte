@@ -25,7 +25,9 @@
 	async function onSubmit(inputs) {
 		showPreview = false;
 		input = inputs;
+		console.log('input', input);
 		output = await simulator(input);
+		console.log('output', output);
 		return output;
 	}
 </script>

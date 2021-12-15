@@ -10,7 +10,7 @@ export const unitConversions = (function () {
 			time: id,
 			angle: id
 		},
-		englishFeet: {
+		englishf: {
 			length: function (x: number) {
 				return x * 0.3048;
 			},
@@ -29,7 +29,7 @@ export const unitConversions = (function () {
 			time: id,
 			angle: id
 		},
-		englishInches: {
+		englishi: {
 			length: function (x: number) {
 				return x * 0.0254;
 			},

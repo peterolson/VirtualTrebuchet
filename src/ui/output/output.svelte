@@ -42,13 +42,7 @@
 		return arr[Math.min(Math.floor(i), arr.length - 1)];
 	}
 
-	function hasNegativeMass(input) {
-		console.log(input);
-		return false;
-	}
-
 	onMount(() => {
-		console.log(input, output);
 		animate();
 	});
 </script>

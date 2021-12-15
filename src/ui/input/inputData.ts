@@ -92,7 +92,7 @@ export const unitLabels = {
 		angle: '°',
 		time: 's'
 	},
-	englishFeet: {
+	englishf: {
 		length: 'ft',
 		mass: 'lb',
 		inertia: 'lb·ft²',
@@ -100,7 +100,7 @@ export const unitLabels = {
 		angle: '°',
 		time: 's'
 	},
-	englishInches: {
+	englishi: {
 		length: 'in',
 		mass: 'lb',
 		inertia: 'lb·in²',

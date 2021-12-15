@@ -20,7 +20,7 @@
 
 	export let onChangeInputs: (inputs: { [key: string]: number }) => void;
 	export let onSubmit: (inputs: { [key: string]: number | string }) => Promise<SimulatorOutput>;
-	let units = 'englishFeet';
+	let units = 'englishf';
 	let projectile = defaultProjectile;
 	let uniformArm = true;
 
@@ -68,7 +68,7 @@
 				inputValues[key] = defaultInputValues[key];
 			}
 		}
-		units = params.units || 'englishFeet';
+		units = params.units || 'englishf';
 		projectile = params.projectile || defaultProjectile;
 		uniformArm = params.uniformArm === 'true';
 
@@ -108,8 +108,8 @@
 			<td>
 				<select id="units" bind:value={units}>
 					<option value="metric">Metric</option>
-					<option value="englishFeet">English (feet)</option>
-					<option value="englishInches">English (inches)</option>
+					<option value="englishf">English (feet)</option>
+					<option value="englishi">English (inches)</option>
 				</select>
 			</td>
 		</tr>
@@ -158,9 +158,10 @@
 		<Input key="releaseAngle" {updateValue} {units} {defaultValues} />
 		<Divider />
 		<tr>
+			<td>
+				<label for="playSpeed">Play speed: <strong>{playSpeeds[playSpeedIndex]}x</strong></label>
+			</td>
 			<td colspan="2">
-				<label for="playSpeed">Play speed: <strong>{playSpeeds[playSpeedIndex]}x</strong></label><br
-				/>
 				<input id="playSpeed" type="range" min="00" max="10" step="1" bind:value={playSpeedIndex} />
 			</td>
 		</tr>
