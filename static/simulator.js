@@ -28,10 +28,6 @@ class Results {
 	}
 
 	getMinMax() {
-		let minMax = [
-			[0, 0],
-			[0, 0]
-		];
 		let points = [
 			this.CartesianPoints.ArmCG,
 			this.CartesianPoints.ArmSlingPoint,
@@ -48,8 +44,8 @@ class Results {
 				minScale * Math.min(...points.map((point) => Math.min(...point.map((p) => p[1]))))
 			],
 			[
-				minScale * Math.max(...points.map((point) => Math.max(...point.map((p) => p[0])))),
-				minScale * Math.max(...points.map((point) => Math.max(...point.map((p) => p[1]))))
+				maxScale * Math.max(...points.map((point) => Math.max(...point.map((p) => p[0])))),
+				maxScale * Math.max(...points.map((point) => Math.max(...point.map((p) => p[1]))))
 			]
 		];
 	}
