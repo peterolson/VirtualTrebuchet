@@ -16,8 +16,8 @@
 	export let projectilePath: Point[];
 
 	const ground = () => [
-		[-(1.5 * heightOfPivot), -heightOfPivot],
-		[1.5 * heightOfPivot, -heightOfPivot]
+		[Math.max(-(1.5 * heightOfPivot), minMax[0][0]), -heightOfPivot],
+		[Math.min(1.5 * heightOfPivot, minMax[1][0]), -heightOfPivot]
 	];
 
 	const frame = () => [
@@ -40,7 +40,7 @@
 		};
 	}
 
-	function getSizing() {
+	function getSizing(minMax) {
 		const min = minMax[0].slice(),
 			max = minMax[1].slice();
 		min[0] -= 0.1;
@@ -71,10 +71,10 @@
 		};
 	}
 
-	let { min, max, dimensions } = getSizing();
+	let { min, max, dimensions } = getSizing(minMax);
 
 	$: {
-		({ min, max, dimensions } = getSizing());
+		({ min, max, dimensions } = getSizing(minMax));
 	}
 
 	function svgAttributes() {
@@ -91,7 +91,16 @@
 		return Math.max(length, minPixels * pixelWidth);
 	}
 
+	function p(percent, minPixels = 3) {
+		const smallestDimension = Math.min(max[0] - min[0], max[1] - min[1]);
+		const length = Math.min((percent / 100) * smallestDimension, (percent * heightOfPivot) / 10);
+		return l(length, minPixels);
+	}
+
 	function path(projectilePath) {
+		if (!projectilePath.length) {
+			return '';
+		}
 		const start = projectilePath[0];
 		let d = `M ${start[0]},${start[1]}`;
 		for (let i = 1; i < projectilePath.length; i++) {
@@ -103,26 +112,23 @@
 </script>
 
 <svg {...svgAttributes()} xmlns="http://www.w3.org/2000/svg">
+	<line {...points(ground())} stroke="#090" stroke-width={p(2)} />
+	<line {...points(frame())} stroke="#D86" stroke-width={p(2)} />
+	<line {...points(weight())} stroke="#E83" stroke-width={p(2)} />
+
+	<line {...points(shortArm())} stroke="#0AF" stroke-width={p(2)} />
+	<line {...points(longArm())} stroke="#A51" stroke-width={p(2)} />
+	<line {...points(sling())} stroke={SlingTension ? '#666' : '#F00'} stroke-width={p(0.5)} />
+	<circle cx={ArmCG[0]} cy={ArmCG[1]} r={p(1.5)} fill="#F00" />
+	<circle cx={WeightCG[0]} cy={WeightCG[1]} r={p(2.5)} fill="#E83" />
 	<path
 		d={path(projectilePath)}
 		fill="none"
 		stroke="#ccc"
-		stroke-width={l(0.03, 3)}
-		stroke-dasharray={`${l(0.03, 3)},${l(0.03, 3)}`}
+		stroke-width={p(0.25)}
+		stroke-dasharray={`${p(0.25)},${p(0.25)}`}
 	/>
-	<line {...points(ground())} stroke="#090" stroke-width={l(heightOfPivot / 5)} />
-	<line {...points(frame())} stroke="#D86" stroke-width={l(heightOfPivot / 5)} />
-	<line {...points(weight())} stroke="#E83" stroke-width={l(heightOfPivot / 5)} />
 	<circle cx={Projectile[0]} cy={Projectile[1]} r={l(projectileDiameter / 2)} fill="#E83" />
-	<line {...points(shortArm())} stroke="#0AF" stroke-width={l(heightOfPivot / 5)} />
-	<line {...points(longArm())} stroke="#A51" stroke-width={l(heightOfPivot / 5)} />
-	<line
-		{...points(sling())}
-		stroke={SlingTension ? '#666' : '#F00'}
-		stroke-width={l(heightOfPivot / 15, 2)}
-	/>
-	<circle cx={ArmCG[0]} cy={ArmCG[1]} r={l(heightOfPivot / 5)} fill="#F00" />
-	<circle cx={WeightCG[0]} cy={WeightCG[1]} r={l(heightOfPivot / 4)} fill="#E83" />
 </svg>
 
 <style>

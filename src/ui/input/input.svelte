@@ -61,7 +61,7 @@
 			id={key}
 			bind:value
 			style={`color:${inputColors[key]}`}
-			step="0.01"
+			step="0.1"
 			{disabled}
 			on:change={() => updateValue(key, value)}
 		/>

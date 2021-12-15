@@ -15,20 +15,32 @@
 
 	let inputValues = defaultValues;
 
+	function toMetric(inputValues) {
+		const metricValues = { ...inputValues };
+		for (const key in metricValues) {
+			metricValues[key] = unitConversions[units][inputUnits[key]](metricValues[key]);
+		}
+		return metricValues;
+	}
+
 	function updateValue(key: string, value: number) {
 		inputValues = {
 			...inputValues,
 			[key]: value
 		};
-		onChangeInputs(inputValues);
+		onChangeInputs(toMetric(inputValues));
 	}
 
 	function submit() {
-		const metricValues = { ...inputValues };
-		for (const key in metricValues) {
-			metricValues[key] = unitConversions[units][inputUnits[key]](metricValues[key]);
-		}
+		const metricValues = toMetric(inputValues);
 		onSubmit({ ...metricValues, projectile, units, playSpeed: playSpeeds[playSpeedIndex] });
+	}
+
+	function reset() {
+		inputValues = defaultValues;
+		projectile = defaultProjectile;
+		uniformArm = true;
+		onChangeInputs(toMetric(inputValues));
 	}
 </script>
 
@@ -92,6 +104,7 @@
 	</tbody>
 </table>
 <button on:click={submit}>Submit</button>
+<button on:click={reset}>Reset</button>
 
 <style>
 	#playSpeed {

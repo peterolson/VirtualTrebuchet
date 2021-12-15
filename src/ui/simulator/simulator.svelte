@@ -4,19 +4,25 @@
 	import { onMount } from 'svelte';
 	import Output from '../output/output.svelte';
 	import type { SimulatorOutput } from '../output/output.types';
+	import PreviewTrebuchet from '../output/previewTrebuchet.svelte';
 
 	let simulator: Comlink.Remote<(inputs: Record<string, number>) => SimulatorOutput>;
 	let output: SimulatorOutput;
 	let input: Record<string, number>;
+	let showPreview: boolean;
 
 	onMount(() => {
 		const worker = new Worker('./simulator.js');
 		simulator = Comlink.wrap<(inputs: Record<string, number>) => SimulatorOutput>(worker);
 	});
 
-	function onChangeInputs() {}
+	function onChangeInputs(inputs) {
+		input = inputs;
+		showPreview = true;
+	}
 
 	async function onSubmit(inputs) {
+		showPreview = false;
 		input = inputs;
 		output = await simulator(input);
 	}
@@ -27,7 +33,9 @@
 		<Inputs {onChangeInputs} {onSubmit} />
 	</div>
 	<div id="output">
-		{#if output}
+		{#if showPreview}
+			<PreviewTrebuchet {input} />
+		{:else if output}
 			{#key output}
 				<Output {output} {input} />
 			{/key}
