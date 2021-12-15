@@ -249,7 +249,7 @@ function simulator(inputs) {
 							MotionVariablesInterpolated,
 							NextResultTime,
 							Check,
-							SlingTension[SlingTension.Count - 1],
+							SlingTension[SlingTension.length - 1],
 							Stage
 						);
 						NextResultTime += ResultTimestep;
@@ -273,7 +273,7 @@ function simulator(inputs) {
 							MotionVariables,
 							time,
 							Check,
-							SlingTension[SlingTension.Count - 1],
+							SlingTension[SlingTension.length - 1],
 							Stage
 						);
 						results.TransitionResults = transitionResults;
@@ -311,17 +311,17 @@ function simulator(inputs) {
 		let ArmSlingPoint_y = [];
 		let Weight_y = [];
 
-		for (let i = 0; i < results.CartesianPoints.ArmSlingPoint.Count; i++)
+		for (let i = 0; i < results.CartesianPoints.ArmSlingPoint.length; i++)
 			ArmSlingPoint_y.push(results.CartesianPoints.ArmSlingPoint[i][1]);
 		if (Math.min(...ArmSlingPoint_y) < -HeightOfPivot)
 			results.ErrorMessages.push('The trebuchet arm went through the ground.');
 
-		for (let i = 0; i < results.CartesianPoints.WeightCG.Count; i++)
+		for (let i = 0; i < results.CartesianPoints.WeightCG.length; i++)
 			Weight_y.push(results.CartesianPoints.WeightCG[i][1]);
 		if (Math.min(...Weight_y) < -HeightOfPivot)
 			results.ErrorMessages.push('The counterweight went through the ground.');
 
-		for (let i = 0; i < results.SlingTension.Count; i++) {
+		for (let i = 0; i < results.SlingTension.length; i++) {
 			if (!results.SlingTension[i]) {
 				results.ErrorMessages.push('The sling was not in tension for the whole launch.');
 				break;

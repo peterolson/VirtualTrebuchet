@@ -10,6 +10,9 @@
 	let projectile = defaultProjectile;
 	let uniformArm = true;
 
+	const playSpeeds = [0.01, 0.05, 0.1, 0.25, 0.5, 1, 2, 4, 8, 16, 32];
+	let playSpeedIndex = 5;
+
 	let inputValues = defaultValues;
 
 	function updateValue(key: string, value: number) {
@@ -25,7 +28,7 @@
 		for (const key in metricValues) {
 			metricValues[key] = unitConversions[units][inputUnits[key]](metricValues[key]);
 		}
-		onSubmit({ ...metricValues, projectile });
+		onSubmit({ ...metricValues, projectile, units, playSpeed: playSpeeds[playSpeedIndex] });
 	}
 </script>
 
@@ -79,9 +82,19 @@
 		<Divider />
 		<Input key="releaseAngle" {updateValue} {units} />
 		<Divider />
+		<tr>
+			<td colspan="2">
+				<label for="playSpeed">Play speed: <strong>{playSpeeds[playSpeedIndex]}x</strong></label><br
+				/>
+				<input id="playSpeed" type="range" min="00" max="10" step="1" bind:value={playSpeedIndex} />
+			</td>
+		</tr>
 	</tbody>
 </table>
 <button on:click={submit}>Submit</button>
 
 <style>
+	#playSpeed {
+		width: 100%;
+	}
 </style>

@@ -27,12 +27,9 @@
 		if (projectile && projectile !== 'custom' && key in projectiles[projectile]) {
 			value = projectiles[projectile][key];
 			const conversion = unitConversions[units][inputUnits[key]];
-			let prevValue = value;
 			value = +reverseConversion(conversion)(value).toFixed(3);
 			disabled = true;
-			if (prevValue !== value) {
-				updateValue(key, value);
-			}
+			updateValue(key, value);
 		}
 		if (uniformArm) {
 			disabled = true;

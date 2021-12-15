@@ -8,7 +8,7 @@ export const defaultValues = {
 	inertiaArm: 64.76,
 	pivotToArmCG: 2.52,
 	massWeight: 98.09,
-	inertiaWeight: 0.5,
+	inertiaWeight: 1,
 	massProjectile: 0.328,
 	projectileDiameter: 0.249,
 	windSpeed: 0,
@@ -72,21 +72,24 @@ export const unitLabels = {
 		mass: 'kg',
 		inertia: 'kg·m²',
 		speed: 'm/s',
-		angle: '°'
+		angle: '°',
+		time: 's'
 	},
 	englishFeet: {
 		length: 'ft',
 		mass: 'lb',
 		inertia: 'lb·ft²',
 		speed: 'ft/s',
-		angle: '°'
+		angle: '°',
+		time: 's'
 	},
 	englishInches: {
 		length: 'in',
 		mass: 'lb',
 		inertia: 'lb·in²',
 		speed: 'in/s',
-		angle: '°'
+		angle: '°',
+		time: 's'
 	}
 };
 
