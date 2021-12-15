@@ -2,9 +2,10 @@
 	import { page } from '$app/stores';
 
 	export let href: string;
+	export let base = href;
 </script>
 
-{#if href === '/' ? $page.path === href : $page.path.startsWith(href)}
+{#if base === '/' ? $page.path === base : $page.path.startsWith(base)}
 	<div class="active"><slot /></div>
 {:else}
 	<a {href} sveltekit:prefetch>
