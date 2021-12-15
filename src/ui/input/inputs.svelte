@@ -97,4 +97,8 @@
 	#playSpeed {
 		width: 100%;
 	}
+
+	table {
+		width: 275px;
+	}
 </style>

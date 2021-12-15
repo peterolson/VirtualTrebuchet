@@ -60,7 +60,7 @@
 			Projectile={t(output.Projectile, i)}
 			ArmCG={t(output.ArmCG, i)}
 			SlingTension={tb(output.SlingTension, i)}
-			availableWidth={container.clientWidth - 16}
+			availableWidth={container.clientWidth - 24}
 			availableHeight={container.clientHeight - 16 - statisticsContainer.clientHeight - 16}
 			projectilePath={output.Projectile.slice(0, Math.floor(i)).concat([t(output.Projectile, i)])}
 		/>
