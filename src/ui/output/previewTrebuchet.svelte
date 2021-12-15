@@ -1,4 +1,6 @@
 <script lang="ts">
+	import NegativeMass from './negativeMass.svelte';
+
 	import type { Point } from './output.types';
 
 	import TrebuchetDisplay from './trebuchetDisplay.svelte';
@@ -74,11 +76,13 @@
 
 <div class="container">
 	<div class="display" bind:this={displayDiv}>
-		{#if displayDiv}
-			{#key input}
-				<TrebuchetDisplay {...getAttributes(input)} />
-			{/key}
-		{/if}
+		<NegativeMass {input}>
+			{#if displayDiv}
+				{#key input}
+					<TrebuchetDisplay {...getAttributes(input)} />
+				{/key}
+			{/if}
+		</NegativeMass>
 	</div>
 	<img src="/MainDiagram.png" alt="Diagram of trebuchet dimensions" width="241" height="203" />
 </div>

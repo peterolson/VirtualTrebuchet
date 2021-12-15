@@ -1,15 +1,16 @@
 <script lang="ts">
+	import DocIcon from '../icons/docIcon.svelte';
 	import { reverseConversion, unitConversions } from './conversions';
 
 	import {
-		defaultValues,
 		inputColors,
 		inputTitles,
 		inputUnits,
 		unitLabels,
 		projectiles,
 		defaultProjectile,
-		inertiaProperties
+		inertiaProperties,
+		documentationPages
 	} from './inputData';
 
 	export let key: string;
@@ -18,6 +19,7 @@
 	export let uniformArm: boolean = false;
 	export let updateValue: (key: string, value: number) => void;
 	export let inputValues: { [key: string]: number } = {};
+	export let defaultValues: { [key: string]: number } = {};
 
 	let value = defaultValues[key];
 	let disabled = false;
@@ -66,6 +68,9 @@
 			on:change={() => updateValue(key, value)}
 		/>
 		{unitLabels[units][inputUnits[key]]}
+	</td>
+	<td>
+		<DocIcon href={documentationPages[key]} title={inputTitles[key]} />
 	</td>
 </tr>
 

@@ -5,6 +5,7 @@
 	import Output from '../output/output.svelte';
 	import type { SimulatorOutput } from '../output/output.types';
 	import PreviewTrebuchet from '../output/previewTrebuchet.svelte';
+	import { page } from '$app/stores';
 
 	let simulator: Comlink.Remote<(inputs: Record<string, number>) => SimulatorOutput>;
 	let output: SimulatorOutput;
@@ -25,10 +26,11 @@
 		showPreview = false;
 		input = inputs;
 		output = await simulator(input);
+		return output;
 	}
 </script>
 
-<main>
+<main class:hidden={$page.path !== '/'}>
 	<div id="input">
 		<Inputs {onChangeInputs} {onSubmit} />
 	</div>
@@ -48,6 +50,10 @@
 		display: flex;
 		height: 100%;
 		width: 100%;
+	}
+
+	.hidden {
+		display: none;
 	}
 
 	#output {

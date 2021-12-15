@@ -1,4 +1,5 @@
 <script lang="ts">
+	import DocIcon from '../icons/docIcon.svelte';
 	import { reverseConversion, unitConversions } from '../input/conversions';
 
 	import { unitLabels } from '../input/inputData';
@@ -59,10 +60,22 @@
 				<tr>
 					<th>Energy efficiency</th>
 					<td>{(energyEfficiency * 100).toFixed(3)}%</td>
+					<td
+						><DocIcon
+							title="Energy efficiency"
+							href="http://localhost:3000/documentation/outputs/Efficiency"
+						/></td
+					>
 				</tr>
 				<tr>
 					<th>Range efficiency</th>
 					<td>{(rangeEfficiency * 100).toFixed(3)}%</td>
+					<td
+						><DocIcon
+							title="Range efficiency"
+							href="http://localhost:3000/documentation/outputs/Efficiency"
+						/></td
+					>
 				</tr>
 				<tr>
 					<th>Release velocity</th>

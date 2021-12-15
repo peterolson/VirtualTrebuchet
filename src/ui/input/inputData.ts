@@ -66,6 +66,23 @@ export const inputColors = {
 	releaseAngle: '#000'
 };
 
+export const documentationPages = {
+	lengthArmShort: '/documentation/inputs/trebuchet-dimensions/ArmLengths',
+	lengthArmLong: '/documentation/inputs/trebuchet-dimensions/ArmLengths',
+	lengthSling: '/documentation/inputs/trebuchet-dimensions/LengthSling',
+	lengthWeight: '/documentation/inputs/trebuchet-dimensions/LengthWeight',
+	heightOfPivot: '/documentation/inputs/trebuchet-dimensions/HeightOfPivot',
+	massArm: '/documentation/inputs/arm/MassArm',
+	inertiaArm: '/documentation/inputs/arm/InertiaArm',
+	pivotToArmCG: '/documentation/inputs/arm/PivotToArmCG',
+	massWeight: '/documentation/inputs/weight/MassWeight',
+	inertiaWeight: '/documentation/inputs/weight/InertiaWeight',
+	massProjectile: '/documentation/inputs/projectile/MassProjectile',
+	projectileDiameter: '/documentation/inputs/projectile/ProjectileDiameter',
+	windSpeed: '/documentation/inputs/projectile/WindSpeed',
+	releaseAngle: '/documentation/inputs/ReleaseAngle'
+};
+
 export const unitLabels = {
 	metric: {
 		length: 'm',
