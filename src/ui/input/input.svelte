@@ -17,7 +17,7 @@
 	export let units: string;
 	export let projectile: string = defaultProjectile;
 	export let uniformArm: boolean = false;
-	export let updateValue: (key: string, value: number) => void;
+	export let updateValue: (key: string, value: number, hideWelcome: boolean) => void;
 	export let inputValues: { [key: string]: number } = {};
 	export let defaultValues: { [key: string]: number } = {};
 
@@ -31,7 +31,7 @@
 			const conversion = unitConversions[units][inputUnits[key]];
 			value = +reverseConversion(conversion)(value).toFixed(3);
 			disabled = true;
-			updateValue(key, value);
+			updateValue(key, value, false);
 		}
 		if (uniformArm) {
 			disabled = true;
@@ -44,7 +44,7 @@
 				let prevValue = value;
 				value = +inertiaValues[key];
 				if (value !== prevValue) {
-					updateValue(key, value);
+					updateValue(key, value, false);
 				}
 			}
 		}
@@ -65,7 +65,7 @@
 			style={`color:${inputColors[key]}`}
 			step="0.1"
 			{disabled}
-			on:change={() => updateValue(key, value)}
+			on:change={() => updateValue(key, value, true)}
 		/>
 		{unitLabels[units][inputUnits[key]]}
 	</td>

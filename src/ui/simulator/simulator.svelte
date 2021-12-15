@@ -6,20 +6,23 @@
 	import type { SimulatorOutput } from '../output/output.types';
 	import PreviewTrebuchet from '../output/previewTrebuchet.svelte';
 	import { page } from '$app/stores';
+	import Welcome from './welcome.svelte';
 
 	let simulator: Comlink.Remote<(inputs: Record<string, number>) => SimulatorOutput>;
 	let output: SimulatorOutput;
 	let input: Record<string, number>;
-	let showPreview: boolean;
+	let showPreview: boolean = false;
 
 	onMount(() => {
 		const worker = new Worker('./simulator.js');
 		simulator = Comlink.wrap<(inputs: Record<string, number>) => SimulatorOutput>(worker);
 	});
 
-	function onChangeInputs(inputs) {
+	function onChangeInputs(inputs, hideWelcome) {
 		input = inputs;
-		showPreview = true;
+		if (hideWelcome) {
+			showPreview = true;
+		}
 	}
 
 	async function onSubmit(inputs) {
@@ -43,6 +46,8 @@
 			{#key output}
 				<Output {output} {input} />
 			{/key}
+		{:else}
+			<Welcome />
 		{/if}
 	</div>
 </main>

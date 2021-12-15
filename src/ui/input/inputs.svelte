@@ -18,7 +18,7 @@
 		projectiles
 	} from './inputData';
 
-	export let onChangeInputs: (inputs: { [key: string]: number }) => void;
+	export let onChangeInputs: (inputs: { [key: string]: number }, hideWelcome: boolean) => void;
 	export let onSubmit: (inputs: { [key: string]: number | string }) => Promise<SimulatorOutput>;
 	let units = 'englishf';
 	let projectile = defaultProjectile;
@@ -40,12 +40,12 @@
 		return metricValues;
 	}
 
-	function updateValue(key: string, value: number) {
+	function updateValue(key: string, value: number, hideWelcome: boolean) {
 		inputValues = {
 			...inputValues,
 			[key]: value
 		};
-		onChangeInputs(toMetric(inputValues));
+		onChangeInputs(toMetric(inputValues), hideWelcome);
 	}
 
 	async function submit() {
@@ -107,9 +107,9 @@
 			<td><label for="units">Units</label></td>
 			<td>
 				<select id="units" bind:value={units}>
-					<option value="metric">Metric</option>
 					<option value="englishf">English (feet)</option>
 					<option value="englishi">English (inches)</option>
+					<option value="metric">Metric</option>
 				</select>
 			</td>
 		</tr>
@@ -141,10 +141,10 @@
 			</td>
 			<td style="text-align: left;">
 				<select id="projectile" bind:value={projectile}>
-					<option value="custom">Custom</option>
 					{#each Object.keys(projectiles) as projectile}
 						<option value={projectile}>{projectiles[projectile].label}</option>
 					{/each}
+					<option value="custom">Custom</option>
 				</select>
 			</td>
 			<td>
