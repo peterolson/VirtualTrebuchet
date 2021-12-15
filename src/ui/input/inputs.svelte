@@ -4,6 +4,8 @@
 	import Input from './input.svelte';
 	import { defaultProjectile, defaultValues, inputUnits, projectiles } from './inputData';
 
+	export let onChangeInputs: (inputs: { [key: string]: number }) => void;
+	export let onSubmit: (inputs: { [key: string]: number | string }) => void;
 	let units = 'englishFeet';
 	let projectile = defaultProjectile;
 	let uniformArm = true;
@@ -15,14 +17,15 @@
 			...inputValues,
 			[key]: value
 		};
+		onChangeInputs(inputValues);
 	}
 
-	function onSubmit() {
+	function submit() {
 		const metricValues = { ...inputValues };
 		for (const key in metricValues) {
 			metricValues[key] = unitConversions[units][inputUnits[key]](metricValues[key]);
 		}
-		console.log(metricValues);
+		onSubmit({ ...metricValues, projectile });
 	}
 </script>
 
@@ -78,7 +81,7 @@
 		<Divider />
 	</tbody>
 </table>
-<button on:click={onSubmit}>Submit</button>
+<button on:click={submit}>Submit</button>
 
 <style>
 </style>

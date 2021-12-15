@@ -1,5 +1,5 @@
 <script>
-	import Inputs from '../ui/input/inputs.svelte';
+	import Simulator from '../ui/simulator/simulator.svelte';
 </script>
 
-<Inputs />
+<Simulator />
