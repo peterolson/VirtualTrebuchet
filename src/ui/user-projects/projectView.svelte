@@ -30,6 +30,7 @@
 	}
 
 	function getDistanceFromLink(link: string): number {
+		if (!link?.includes('distance=')) return 0;
 		return +(+link.split('distance=')[1].split('&')[0]).toFixed(1);
 	}
 

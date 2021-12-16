@@ -35,6 +35,6 @@
 	VirtualTrebuchet.
 </p>
 
-{#each userProjects.slice(0, limit) as userProject}
+{#each userProjects.filter(Boolean).slice(0, limit) as userProject}
 	<ProjectView {userProject} />
 {/each}
