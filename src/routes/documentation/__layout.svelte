@@ -74,21 +74,20 @@
 	}
 	nav {
 		padding: 8px;
+		width: 300px;
 		flex-shrink: 0;
-		border-right: 1px solid #ccc;
 	}
 	main {
 		flex-grow: 1;
 		padding: 8px;
-		max-width: 700px;
+		max-width: 640px;
 	}
 
 	ul {
-		list-style: none;
-		margin: 0;
+		margin-left: 32px;
 		padding: 0;
 	}
 	ul ul {
-		margin-left: 1.4em;
+		margin-left: 3em;
 	}
 </style>

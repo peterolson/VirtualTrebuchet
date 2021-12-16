@@ -4,6 +4,7 @@
 	import { onDestroy, onMount } from 'svelte';
 
 	import ProjectView from './projectView.svelte';
+	import SubmitForm from './submitForm.svelte';
 	import type { UserProject } from './userProject.types';
 
 	export let userProjects: UserProject[];
@@ -27,14 +28,12 @@
 	}
 </script>
 
-<h2>User projects</h2>
+<h1>User projects</h1>
 
 <p>
-	Check out these real-world trebuchets and see how they compare to the simulation results on
+	Check out these trebuchets that people built and see how they compare to the simulation results on
 	VirtualTrebuchet.
 </p>
-
-<p>Want to share your trebuchet?</p>
 
 {#each userProjects.slice(0, limit) as userProject}
 	<ProjectView {userProject} />

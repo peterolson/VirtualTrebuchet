@@ -7,6 +7,7 @@
 	import LinkIcon from '../icons/linkIcon.svelte';
 	import SimulateIcon from '../icons/simulateIcon.svelte';
 	import type { SimulatorOutput } from '../output/output.types';
+	import { link } from '../user-projects/submitFormStores';
 
 	import { unitConversions } from './conversions';
 	import Divider from './divider.svelte';
@@ -93,7 +94,9 @@
 		}
 		const host = $page.host;
 		const part = $page.path;
-		return `${protocol}//${host}${part}?${query}`;
+		const url = `${protocol}//${host}${part}?${query}`;
+		link.set(url);
+		return url;
 	}
 
 	function clickLink(e) {
