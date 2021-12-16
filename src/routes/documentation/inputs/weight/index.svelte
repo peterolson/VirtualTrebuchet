@@ -1,6 +1,6 @@
 <script lang="ts">
-	import InertiaWeight from './InertiaWeight.html';
-	import MassWeight from './MassWeight.html';
+	import InertiaWeight from './InertiaWeight.svelte';
+	import MassWeight from './MassWeight.svelte';
 </script>
 
 <InertiaWeight />

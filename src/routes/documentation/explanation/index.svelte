@@ -1,11 +1,11 @@
 <script lang="ts">
-	import SimulationOverview from './SimulationOverview.html';
-	import ExampleProblem from './ExampleProblem.html';
-	import EquationsOfMotion from './EquationsOfMotion.html';
-	import AnglesToXY from './AnglesToXY.html';
-	import RungeKutta from './RungeKutta.html';
-	import ProjectileDrag from './ProjectileDrag.html';
-	import Autolev from './Autolev.html';
+	import SimulationOverview from './SimulationOverview.svelte';
+	import ExampleProblem from './ExampleProblem.svelte';
+	import EquationsOfMotion from './EquationsOfMotion.svelte';
+	import AnglesToXY from './AnglesToXY.svelte';
+	import RungeKutta from './RungeKutta.svelte';
+	import ProjectileDrag from './ProjectileDrag.svelte';
+	import Autolev from './Autolev.svelte';
 </script>
 
 <SimulationOverview />

@@ -3,7 +3,7 @@
 	import Arm from './arm/index.svelte';
 	import Weight from './weight/index.svelte';
 	import Projectile from './projectile/index.svelte';
-	import ReleaseAngle from './ReleaseAngle.html';
+	import ReleaseAngle from './ReleaseAngle.svelte';
 </script>
 
 <TrebuchetDimensions />

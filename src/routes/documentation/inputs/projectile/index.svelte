@@ -1,8 +1,8 @@
 <script lang="ts">
-	import ProjectileType from './ProjectileType.html';
-	import MassProjectile from './MassProjectile.html';
-	import ProjectileDiameter from './ProjectileDiameter.html';
-	import WindSpeed from './WindSpeed.html';
+	import ProjectileType from './ProjectileType.svelte';
+	import MassProjectile from './MassProjectile.svelte';
+	import ProjectileDiameter from './ProjectileDiameter.svelte';
+	import WindSpeed from './WindSpeed.svelte';
 </script>
 
 <ProjectileType />

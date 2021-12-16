@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Errors from './Errors.html';
-	import Efficiency from './Efficiency.html';
+	import Errors from './Errors.svelte';
+	import Efficiency from './Efficiency.svelte';
 </script>
 
 <Efficiency />

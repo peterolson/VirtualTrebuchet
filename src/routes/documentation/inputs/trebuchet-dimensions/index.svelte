@@ -1,8 +1,8 @@
 <script lang="ts">
-	import ArmLengths from './ArmLengths.html';
-	import HeightOfPivot from './HeightOfPivot.html';
-	import LengthSling from './LengthSling.html';
-	import LengthWeight from './LengthWeight.html';
+	import ArmLengths from './ArmLengths.svelte';
+	import HeightOfPivot from './HeightOfPivot.svelte';
+	import LengthSling from './LengthSling.svelte';
+	import LengthWeight from './LengthWeight.svelte';
 </script>
 
 <ArmLengths />
