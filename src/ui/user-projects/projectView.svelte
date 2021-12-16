@@ -64,7 +64,14 @@
 </div>
 <div class="media">
 	{#if userProject.image}
-		<img src={userProject.image} alt="trebuchet" />
+		<!--fix for https-->
+		<img
+			src={userProject.image.replace(
+				'http://virtual-trebuchet.s3-website.us-east-2.amazonaws.com/',
+				'https://virtual-trebuchet.s3.us-east-2.amazonaws.com/'
+			)}
+			alt="trebuchet"
+		/>
 	{/if}
 	{#if userProject.video}
 		<iframe
