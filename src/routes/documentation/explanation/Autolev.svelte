@@ -262,8 +262,7 @@
 <p><code>-&gt; (87) u3 = -(LAl*SIN(Aq)+LS*SIN(Aq+Sq))*u1/(LS*SIN(Aq+Sq))</code></p>
 
 <p>
-	<code
-		>-&gt; (88) u3&#39; = -COS(Aq+Sq)*u3*(u3+2*u1)/SIN(Aq+Sq) - (COS(Aq+Sq)/SIN(Aq+Sq)+LAl*</code
+	<code>-&gt; (88) u3&#39; = -COS(Aq+Sq)*u3*(u3+2*u1)/SIN(Aq+Sq) - (COS(Aq+Sq)/SIN(Aq+Sq)+LAl*</code
 	>
 </p>
 
@@ -439,7 +438,7 @@
 	Fy was defined as the force to keep the projectile on the ground. This command converted the
 	previous three equations of motion into the two equations of motion that are expected, and an
 	expression for Fy. This is where the equations of motion for stage 1 of the
-	<a href="/explanation/EquationsOfMotion">Equations of Motion</a> section came from.
+	<a href="/documentation/explanation/EquationsOfMotion">Equations of Motion</a> section came from.
 </p>
 
 <p><strong>Stage 2 Autolev Code:</strong></p>
@@ -715,7 +714,7 @@
 	Notice that in stage 2 there are no dependent variables, so u1’, u2’, and u3’ all appear, and
 	there are three equations and three motion variable derivatives. This is where the equations of
 	motion for stage 2 of the
-	<a href="/explanation/EquationsOfMotion">Equations of Motion</a> section came from.
+	<a href="/documentation/explanation/EquationsOfMotion">Equations of Motion</a> section came from.
 </p>
 
 <p><strong>Stage 3 Autolev Code:</strong></p>
@@ -897,5 +896,5 @@
 
 <p>
 	This is where the equations of motion for stage 3 of the
-	<a href="/explanation/EquationsOfMotion">Equations of Motion</a> section came from.
+	<a href="/documentation/explanation/EquationsOfMotion">Equations of Motion</a> section came from.
 </p>

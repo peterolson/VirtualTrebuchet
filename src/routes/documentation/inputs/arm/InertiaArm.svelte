@@ -13,7 +13,7 @@
 	approximated by the formula,
 </p>
 
-<p><img alt="Inertia for a Beam" src="/documentation/InertiaEquation.gif" /></p>
+<p><img alt="Inertia for a Beam" src="/documentation/inertiaEquation.gif" /></p>
 
 <p>
 	where <strong>m</strong> is the mass of the arm, and <strong>L</strong> is the total length of the
