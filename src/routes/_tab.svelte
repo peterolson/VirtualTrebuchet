@@ -17,14 +17,17 @@
 
 <style>
 	div {
+		flex-grow: 1;
 		padding: 8px;
 		font-weight: 500;
 		line-height: 1.25;
 		font-family: 'Helvetica', 'Arial', sans-serif;
 		font-weight: bold;
+		text-align: center;
 	}
 
 	a {
+		flex-grow: 1;
 		text-decoration: none;
 		color: #999;
 	}
