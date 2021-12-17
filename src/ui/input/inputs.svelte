@@ -29,8 +29,11 @@
 	let output: SimulatorOutput;
 
 	onMount(() => {
-		inputValues = consumeURL();
-		setInputs(inputValues);
+		// load values from url params
+		if (Array.from($page.query.keys()).length) {
+			inputValues = consumeURL($page.query);
+			setInputs(inputValues);
+		}
 	});
 
 	function toMetric(inputValues) {
@@ -59,8 +62,8 @@
 		});
 	}
 
-	function consumeURL() {
-		const params = Object.fromEntries($page.query.entries());
+	function consumeURL(query: URLSearchParams) {
+		const params = Object.fromEntries(query.entries());
 		const inputValues: any = {};
 		for (const key in defaultValues) {
 			if (key in params) {
@@ -72,7 +75,6 @@
 		units = params.units || 'englishf';
 		projectile = params.projectile || defaultProjectile;
 		uniformArm = params.uniformArm === 'true';
-
 		return inputValues;
 	}
 
