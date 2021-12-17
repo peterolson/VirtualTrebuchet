@@ -1,5 +1,6 @@
 <script lang="ts" context="module">
 	import type { Load } from '@sveltejs/kit';
+	import { onMount } from 'svelte';
 	let submittedProjects;
 	export const load: Load = async function ({ page, fetch }) {
 		const projectsFile = `https://virtual-trebuchet.s3.us-east-2.amazonaws.com/submissionQueue.json`;
@@ -32,6 +33,8 @@
 			`https://virtual-trebuchet.s3.us-east-2.amazonaws.com/submissionQueue.json`
 		).then((x) => x.json());
 	}
+
+	onMount(refresh);
 
 	async function review(item, type) {
 		disabled = true;

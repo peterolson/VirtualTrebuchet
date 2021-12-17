@@ -17,6 +17,7 @@
 <script lang="ts">
 	import ModifyProject from '../../ui/user-projects/modifyProject.svelte';
 	import Authenticate from '../../ui/user-projects/authenticate.svelte';
+	import { onMount } from 'svelte';
 
 	let password = '';
 
@@ -31,6 +32,8 @@
 			`https://virtual-trebuchet.s3.us-east-2.amazonaws.com/userProjects.json`
 		).then((x) => x.json());
 	}
+
+	onMount(refresh);
 </script>
 
 <div class="container">
