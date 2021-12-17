@@ -14,7 +14,7 @@
 	let showPreview: boolean = false;
 
 	onMount(() => {
-		const worker = new Worker('./simulator.js');
+		const worker = new Worker('/simulator.js');
 		simulator = Comlink.wrap<(inputs: Record<string, number>) => SimulatorOutput>(worker);
 		if (window.location.hash.startsWith('#simulator_')) {
 			window.location.href = '/Trebuchet.html' + window.location.hash;
