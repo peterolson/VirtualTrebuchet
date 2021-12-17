@@ -31,9 +31,13 @@
 	async function onSubmit(inputs) {
 		showPreview = false;
 		input = inputs;
+		const start = +new Date();
 		console.log('input', input);
 		output = await simulator(input);
 		console.log('output', output);
+		if (typeof _gaq !== 'undefined') {
+			_gaq.push(['_trackEvent', 'Simulation', 'Submit', input?.units, +new Date() - start]);
+		}
 		return output;
 	}
 </script>
