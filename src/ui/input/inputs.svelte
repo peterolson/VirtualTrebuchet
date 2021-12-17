@@ -67,7 +67,7 @@
 		const inputValues: any = {};
 		for (const key in defaultValues) {
 			if (key in params) {
-				inputValues[key] = +params[key];
+				inputValues[key] = +params[key].replace(/,/, '.');
 			} else {
 				inputValues[key] = defaultValues[key];
 			}
