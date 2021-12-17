@@ -12,6 +12,7 @@
 		inertiaProperties,
 		documentationPages
 	} from './inputData';
+	import { inputStores } from './inputStores';
 
 	export let key: string;
 	export let units: string;
@@ -19,19 +20,19 @@
 	export let uniformArm: boolean = false;
 	export let updateValue: (key: string, value: number, hideWelcome: boolean) => void;
 	export let inputValues: { [key: string]: number } = {};
-	export let defaultValues: { [key: string]: number } = {};
 
-	let value = defaultValues[key];
+	const valueStore = inputStores[key];
+
 	let disabled = false;
 
 	$: {
 		disabled = false;
 		if (projectile && projectile !== 'custom' && key in projectiles[projectile]) {
-			value = projectiles[projectile][key];
+			valueStore.set(projectiles[projectile][key]);
 			const conversion = unitConversions[units][inputUnits[key]];
-			value = +reverseConversion(conversion)(value).toFixed(3);
+			valueStore.set(+reverseConversion(conversion)($valueStore).toFixed(3));
 			disabled = true;
-			updateValue(key, value, false);
+			updateValue(key, $valueStore, false);
 		}
 		if (uniformArm) {
 			disabled = true;
@@ -41,10 +42,10 @@
 				inputValues.lengthArmShort
 			);
 			if (key in inertiaValues) {
-				let prevValue = value;
-				value = +inertiaValues[key];
-				if (value !== prevValue) {
-					updateValue(key, value, false);
+				let prevValue = $valueStore;
+				valueStore.set(+inertiaValues[key]);
+				if ($valueStore !== prevValue) {
+					updateValue(key, $valueStore, false);
 				}
 			}
 		}
@@ -61,11 +62,11 @@
 		<input
 			type="number"
 			id={key}
-			bind:value
+			bind:value={$valueStore}
 			style={`color:${inputColors[key]}`}
 			step="0.1"
 			{disabled}
-			on:change={() => updateValue(key, value, true)}
+			on:change={() => updateValue(key, $valueStore, true)}
 		/>
 		{unitLabels[units][inputUnits[key]]}
 	</td>

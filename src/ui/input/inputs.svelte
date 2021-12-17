@@ -2,6 +2,7 @@
 	import { browser } from '$app/env';
 
 	import { page } from '$app/stores';
+	import { onMount } from 'svelte';
 
 	import DocIcon from '../icons/docIcon.svelte';
 	import LinkIcon from '../icons/linkIcon.svelte';
@@ -12,12 +13,8 @@
 	import { unitConversions } from './conversions';
 	import Divider from './divider.svelte';
 	import Input from './input.svelte';
-	import {
-		defaultProjectile,
-		defaultValues as defaultInputValues,
-		inputUnits,
-		projectiles
-	} from './inputData';
+	import { defaultProjectile, defaultValues, inputUnits, projectiles } from './inputData';
+	import { setInputs } from './inputStores';
 
 	export let onChangeInputs: (inputs: { [key: string]: number }, hideWelcome: boolean) => void;
 	export let onSubmit: (inputs: { [key: string]: number | string }) => Promise<SimulatorOutput>;
@@ -28,10 +25,13 @@
 	const playSpeeds = [0.01, 0.05, 0.1, 0.25, 0.5, 1, 2, 4, 8, 16, 32];
 	let playSpeedIndex = 5;
 
-	let defaultValues = consumeURL();
-
 	let inputValues = defaultValues;
 	let output: SimulatorOutput;
+
+	onMount(() => {
+		inputValues = consumeURL();
+		setInputs(inputValues);
+	});
 
 	function toMetric(inputValues) {
 		const metricValues = { ...inputValues };
@@ -61,12 +61,12 @@
 
 	function consumeURL() {
 		const params = Object.fromEntries($page.query.entries());
-		const inputValues = {};
-		for (const key in defaultInputValues) {
+		const inputValues: any = {};
+		for (const key in defaultValues) {
 			if (key in params) {
 				inputValues[key] = +params[key];
 			} else {
-				inputValues[key] = defaultInputValues[key];
+				inputValues[key] = defaultValues[key];
 			}
 		}
 		units = params.units || 'englishf';
@@ -116,11 +116,11 @@
 				</select>
 			</td>
 		</tr>
-		<Input key="lengthArmShort" {units} {updateValue} {defaultValues} />
-		<Input key="lengthArmLong" {units} {updateValue} {defaultValues} />
-		<Input key="lengthSling" {units} {updateValue} {defaultValues} />
-		<Input key="lengthWeight" {units} {updateValue} {defaultValues} />
-		<Input key="heightOfPivot" {units} {updateValue} {defaultValues} />
+		<Input key="lengthArmShort" {units} {updateValue} />
+		<Input key="lengthArmLong" {units} {updateValue} />
+		<Input key="lengthSling" {units} {updateValue} />
+		<Input key="lengthWeight" {units} {updateValue} />
+		<Input key="heightOfPivot" {units} {updateValue} />
 		<Divider />
 		<tr>
 			<td><label for="uniformArm">Uniform arm</label></td>
@@ -131,12 +131,12 @@
 				<DocIcon href="/documentation/inputs/arm/UniformArm" title="Uniform arm" />
 			</td>
 		</tr>
-		<Input key="massArm" {units} {updateValue} {defaultValues} />
-		<Input key="inertiaArm" {units} {updateValue} {uniformArm} {inputValues} {defaultValues} />
-		<Input key="pivotToArmCG" {units} {updateValue} {uniformArm} {inputValues} {defaultValues} />
+		<Input key="massArm" {units} {updateValue} />
+		<Input key="inertiaArm" {units} {updateValue} {uniformArm} {inputValues} />
+		<Input key="pivotToArmCG" {units} {updateValue} {uniformArm} {inputValues} />
 		<Divider />
-		<Input key="massWeight" {units} {updateValue} {defaultValues} />
-		<Input key="inertiaWeight" {units} {updateValue} {defaultValues} />
+		<Input key="massWeight" {units} {updateValue} />
+		<Input key="inertiaWeight" {units} {updateValue} />
 		<Divider />
 		<tr>
 			<td>
@@ -154,11 +154,11 @@
 				<DocIcon href="/documentation/inputs/projectile/ProjectileType" title="Projectile type" />
 			</td>
 		</tr>
-		<Input key="massProjectile" {units} {updateValue} {projectile} {defaultValues} />
-		<Input key="projectileDiameter" {units} {updateValue} {projectile} {defaultValues} />
-		<Input key="windSpeed" {updateValue} {units} {defaultValues} />
+		<Input key="massProjectile" {units} {updateValue} {projectile} />
+		<Input key="projectileDiameter" {units} {updateValue} {projectile} />
+		<Input key="windSpeed" {updateValue} {units} />
 		<Divider />
-		<Input key="releaseAngle" {updateValue} {units} {defaultValues} />
+		<Input key="releaseAngle" {updateValue} {units} />
 		<Divider />
 		<tr>
 			<td>
