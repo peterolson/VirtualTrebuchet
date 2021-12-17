@@ -72,6 +72,8 @@
 		width: 100%;
 		max-width: 640px;
 		margin: 16px auto;
+		padding: 16px;
+		box-sizing: border-box;
 	}
 
 	textarea {

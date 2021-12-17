@@ -27,10 +27,14 @@
 	.root {
 		display: flex;
 		flex-direction: column;
-		height: 100%;
+		overflow-x: auto;
 	}
 
 	nav {
 		display: flex;
+		width: 100%;
+		overflow-x: auto;
+		white-space: nowrap;
+		flex-shrink: 0;
 	}
 </style>

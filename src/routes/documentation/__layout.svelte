@@ -1,10 +1,39 @@
-<script>
+<script lang="ts">
+	import ChevronUpIcon from '../../ui/icons/chevronUpIcon.svelte';
+	import ChevronDownIcon from '../../ui/icons/chevronDownIcon.svelte';
 	import Link from './_link.svelte';
+	import { onMount } from 'svelte';
+
+	let collapsed = true;
+	function toggleCollapsed() {
+		collapsed = !collapsed;
+	}
+
+	let linksNode: HTMLUListElement;
+
+	onMount(() => {
+		linksNode.onclick = (e) => {
+			const target = (e.target as HTMLAnchorElement).tagName;
+			if (target.toUpperCase() === 'A') {
+				collapsed = true;
+			}
+		};
+	});
 </script>
 
 <div>
-	<nav>
-		<ul>
+	<nav class:collapsed>
+		<div>
+			<button on:click={toggleCollapsed}>
+				{#if collapsed}
+					<ChevronDownIcon />
+				{:else}
+					<ChevronUpIcon />
+				{/if}
+				{collapsed ? 'Show menu' : 'Hide menu'}
+			</button>
+		</div>
+		<ul bind:this={linksNode}>
 			<Link href="/documentation/new">New in VirtualTrebuchet 2.0</Link>
 			<Link href="/documentation/about">About Us</Link>
 			<Link href="/documentation/FAQ">FAQ</Link>
@@ -88,6 +117,35 @@
 		padding: 0;
 	}
 	ul ul {
-		margin-left: 3em;
+		margin-left: 20%;
+	}
+
+	nav button {
+		display: none;
+	}
+
+	main {
+		margin: 0px 8px;
+	}
+
+	@media (max-width: 725px) {
+		div {
+			flex-direction: column;
+		}
+		nav {
+			width: 100%;
+		}
+		.collapsed ul {
+			display: none;
+		}
+
+		nav button {
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: flex-start;
+			border: none;
+			background-color: white;
+		}
 	}
 </style>

@@ -1,4 +1,7 @@
 <script lang="ts">
+	import ChevronDownIcon from '../icons/chevronDownIcon.svelte';
+	import ChevronUpIcon from '../icons/chevronUpIcon.svelte';
+
 	import Loader from '../icons/loader.svelte';
 	import { email, link, distance, units, description, video, imageURL } from './submitFormStores';
 
@@ -7,6 +10,7 @@
 	let uploadError = '';
 	let isSubmitting = false;
 	let successText = '';
+	let isCollapsed = true;
 
 	async function onChangeFile(e) {
 		uploadError = '';
@@ -100,61 +104,70 @@
 	}
 </script>
 
-<h2>Submit a trebuchet</h2>
-
-E-mail address&nbsp;<br />
-<small>(will not be published)</small>
-<br />
-<input type="email" bind:value={$email} />
-<br />
-Link to trebuchet configuration
-<br />
-<input type="text" bind:value={$link} />
-<br />
-Actual distance
-<br />
-<div>
-	<input type="number" step="0.1" bind:value={$distance} />
-	<select bind:value={$units}>
-		<option value="englishf">feet</option>
-		<option value="metric">meters</option>
-	</select>
-</div>
-Comments / description
-<br />
-<textarea rows={8} bind:value={$description} />
-<br />
-Picture of trebuchet
-<br />
-<div>
-	<input type="file" accept="image/*" on:change={onChangeFile} />
-	{#if isUploading}
+<button on:click={() => (isCollapsed = !isCollapsed)} class="toggle">
+	{#if isCollapsed}
+		<ChevronDownIcon />
+	{:else}
+		<ChevronUpIcon />
+	{/if}
+	{isCollapsed ? 'Submit a trebuchet' : 'Hide form'}
+</button>
+<h2 class:hidden={isCollapsed}>Submit a trebuchet</h2>
+<div class="form" class:hidden={isCollapsed}>
+	E-mail address&nbsp;<br />
+	<small>(will not be published)</small>
+	<br />
+	<input type="email" bind:value={$email} />
+	<br />
+	Link to trebuchet configuration
+	<br />
+	<input type="text" bind:value={$link} />
+	<br />
+	Actual distance
+	<br />
+	<div>
+		<input type="number" step="0.1" bind:value={$distance} />
+		<select bind:value={$units}>
+			<option value="englishf">feet</option>
+			<option value="metric">meters</option>
+		</select>
+	</div>
+	Comments / description
+	<br />
+	<textarea rows={8} bind:value={$description} />
+	<br />
+	Picture of trebuchet
+	<br />
+	<div>
+		<input type="file" accept="image/*" on:change={onChangeFile} />
+		{#if isUploading}
+			<Loader />
+		{/if}
+	</div>
+	{#if uploadError}
+		<div class="error">{uploadError}</div>
+	{/if}
+	<div style="margin-bottom: 4px;">
+		<small> - OR -</small>
+	</div>
+	Video of trebuchet
+	<br />
+	<input type="text" bind:value={$video} />
+	<br />
+	<small>(enter YouTube link)</small>
+	<div style="margin: 8px 0;">
+		<button on:click={submit} disabled={isSubmitting}>Submit</button>
+	</div>
+	{#if error}
+		<div class="error">{error}</div>
+	{/if}
+	{#if isSubmitting}
 		<Loader />
 	{/if}
+	{#if successText}
+		<div class="success">{successText}</div>
+	{/if}
 </div>
-{#if uploadError}
-	<div class="error">{uploadError}</div>
-{/if}
-<div style="margin-bottom: 4px;">
-	<small> - OR -</small>
-</div>
-Video of trebuchet
-<br />
-<input type="text" bind:value={$video} />
-<br />
-<small>(enter YouTube link)</small>
-<div style="margin: 8px 0;">
-	<button on:click={submit} disabled={isSubmitting}>Submit</button>
-</div>
-{#if error}
-	<div class="error">{error}</div>
-{/if}
-{#if isSubmitting}
-	<Loader />
-{/if}
-{#if successText}
-	<div class="success">{successText}</div>
-{/if}
 
 <style>
 	small {
@@ -167,7 +180,7 @@ Video of trebuchet
 		margin-top: 2px;
 		margin-bottom: 4px;
 	}
-	div {
+	.form div {
 		display: flex;
 		align-items: center;
 	}
@@ -176,5 +189,24 @@ Video of trebuchet
 	}
 	.success {
 		color: green;
+	}
+
+	button.toggle {
+		display: none;
+	}
+
+	@media (max-width: 725px) {
+		.hidden {
+			display: none;
+		}
+
+		button.toggle {
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: flex-start;
+			border: none;
+			background-color: white;
+		}
 	}
 </style>

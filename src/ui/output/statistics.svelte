@@ -118,4 +118,11 @@
 		min-width: 80px;
 		text-align: center;
 	}
+
+	/* screen sizes less than 1024px wide */
+	@media (max-width: 1024px) {
+		.container {
+			flex-direction: column;
+		}
+	}
 </style>

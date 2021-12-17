@@ -22,11 +22,11 @@
 		if (units === 'metric') {
 			return `<strong>${lengthFromMetric(distance).toFixed(
 				1
-			)}</strong> feet (<strong>${distance}</strong> meters)`;
+			)}</strong> feet<div><strong>${distance}</strong> meters</div>`;
 		}
-		return `<strong>${distance}</strong> feet (<strong>${lengthToMetric(distance).toFixed(
+		return `<strong>${distance}</strong> feet<div><strong>${lengthToMetric(distance).toFixed(
 			1
-		)}</strong> meters)`;
+		)}</strong> meters</div>`;
 	}
 
 	function getDistanceFromLink(link: string): number {
@@ -75,9 +75,7 @@
 	{/if}
 	{#if userProject.video}
 		<iframe
-			width="560"
-			height="315"
-			style={`background-color: black;background-image: url("https://img.youtube.com/vi/${getYoutubeId(
+			style={`background-image: url("https://img.youtube.com/vi/${getYoutubeId(
 				userProject.video
 			)}/hqdefault.jpg");`}
 			src={`https://www.youtube.com/embed/${getYoutubeId(userProject.video)}`}
@@ -92,7 +90,7 @@
 	<table>
 		<thead>
 			<tr>
-				<th colspan="2">How far does it shoot?</th>
+				<th colspan="2" />
 			</tr>
 		</thead>
 		<tbody>
@@ -124,7 +122,7 @@
 		padding: 8px;
 	}
 	img {
-		max-width: 560px;
+		max-width: 100%;
 		max-height: 75vh;
 	}
 
@@ -145,12 +143,19 @@
 	}
 
 	.statistics table {
-		width: 400px;
+		width: 100%;
+		max-width: 400px;
 		margin: auto;
 	}
 
-	.right {
+	td.right {
 		text-align: right;
+		padding-right: 8px;
+		vertical-align: top;
+	}
+
+	:global(td.right + td div) {
+		opacity: 0.7;
 	}
 
 	.accuracy {
@@ -163,5 +168,12 @@
 
 	.secondary {
 		opacity: 0.7;
+	}
+
+	iframe {
+		width: 100%;
+		max-width: 560px;
+		aspect-ratio: 16 / 9;
+		background-color: black;
 	}
 </style>

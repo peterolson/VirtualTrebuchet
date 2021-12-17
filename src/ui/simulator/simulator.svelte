@@ -77,4 +77,10 @@
 	#input {
 		padding: 8px;
 	}
+
+	@media (max-width: 725px) {
+		main {
+			flex-direction: column;
+		}
+	}
 </style>

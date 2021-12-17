@@ -8,7 +8,7 @@
 		different trebuchet configurations.
 	</p>
 	<ol>
-		<li>To begin, enter the parameters of your trebuchet in the input boxes on the left.</li>
+		<li>To begin, enter the parameters of your trebuchet in the input boxes.</li>
 		<li>Next, press the "Simulate" button located under the inputs.</li>
 		<li>Finally, watch your trebuchet go.</li>
 	</ol>

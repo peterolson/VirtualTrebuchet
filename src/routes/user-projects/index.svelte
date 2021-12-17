@@ -51,4 +51,10 @@
 	.list {
 		max-width: 640px;
 	}
+
+	@media (max-width: 725px) {
+		.container {
+			flex-direction: column;
+		}
+	}
 </style>

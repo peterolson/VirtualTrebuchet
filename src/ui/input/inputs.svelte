@@ -230,4 +230,10 @@
 	.saveLink {
 		width: calc(100% - 36px);
 	}
+
+	@media (max-width: 725px) {
+		table {
+			width: 100%;
+		}
+	}
 </style>
