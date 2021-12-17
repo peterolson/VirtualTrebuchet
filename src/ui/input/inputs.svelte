@@ -30,8 +30,8 @@
 
 	onMount(() => {
 		// load values from url params
-		if (Array.from($page.query.keys()).length) {
-			inputValues = consumeURL($page.query);
+		if (window.location.search.length > 1) {
+			inputValues = consumeURL(new URLSearchParams(window.location.search));
 			setInputs(inputValues);
 		}
 	});
