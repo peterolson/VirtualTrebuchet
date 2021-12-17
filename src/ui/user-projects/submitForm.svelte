@@ -38,7 +38,6 @@
 		});
 		imageURL.set(`${endpoint}/${key}`);
 		isUploading = false;
-		console.log(res, imageURL);
 	}
 
 	async function submit() {

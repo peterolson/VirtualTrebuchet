@@ -46,7 +46,7 @@
 			...inputValues,
 			[key]: value
 		};
-		onChangeInputs(toMetric(inputValues), hideWelcome);
+		onChangeInputs({ ...toMetric(inputValues), units, projectile, uniformArm }, hideWelcome);
 	}
 
 	async function submit() {

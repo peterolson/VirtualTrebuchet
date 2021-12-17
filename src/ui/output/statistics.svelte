@@ -21,11 +21,11 @@
 		units = 'englishf';
 	}
 
-	const length = unitLabels[units].length;
-	const time = unitLabels[units].time;
-	const speed = unitLabels[units].speed;
+	const length = (units) => unitLabels[units].length;
+	const time = (units) => unitLabels[units].time;
+	const speed = (units) => unitLabels[units].speed;
 
-	function convert(value, type) {
+	function convert(value, type, units) {
 		return reverseConversion(unitConversions[units][type])(value);
 	}
 </script>
@@ -43,18 +43,18 @@
 			<tbody>
 				<tr>
 					<th>Distance</th>
-					<td>{convert(currentDistance, 'length').toFixed(3)} {length}</td>
-					<td>{convert(maxDistance, 'length').toFixed(3)} {length}</td>
+					<td>{convert(currentDistance, 'length', units).toFixed(3)} {length(units)}</td>
+					<td>{convert(maxDistance, 'length', units).toFixed(3)} {length(units)}</td>
 				</tr>
 				<tr>
 					<th>Height</th>
-					<td>{convert(currentHeight, 'length').toFixed(3)} {length}</td>
-					<td>{convert(maxHeight, 'length').toFixed(3)} {length}</td>
+					<td>{convert(currentHeight, 'length', units).toFixed(3)} {length(units)}</td>
+					<td>{convert(maxHeight, 'length', units).toFixed(3)} {length(units)}</td>
 				</tr>
 				<tr>
 					<th>Time</th>
-					<td>{currentTime.toFixed(3)} {time}</td>
-					<td>{maxTime.toFixed(3)} {time}</td>
+					<td>{currentTime.toFixed(3)} {time(units)}</td>
+					<td>{maxTime.toFixed(3)} {time(units)}</td>
 				</tr>
 			</tbody>
 		</table>
@@ -84,7 +84,7 @@
 				</tr>
 				<tr>
 					<th>Release velocity</th>
-					<td>{convert(releaseVelocity, 'speed').toFixed(3)} {speed}</td>
+					<td>{convert(releaseVelocity, 'speed', units).toFixed(3)} {speed(units)}</td>
 				</tr>
 			</tbody>
 		</table>
