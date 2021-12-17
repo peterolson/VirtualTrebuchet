@@ -62,7 +62,9 @@
 				ArmCG={t(output.ArmCG, i)}
 				SlingTension={tb(output.SlingTension, i)}
 				availableWidth={container.clientWidth - 24}
-				availableHeight={container.clientHeight - 16 - statisticsContainer.clientHeight - 16}
+				availableHeight={container.clientHeight -
+					16 -
+					(container.clientWidth > 725 ? statisticsContainer.clientHeight - 16 : 0)}
 				projectilePath={output.Projectile.slice(0, Math.floor(i)).concat([t(output.Projectile, i)])}
 			/>
 		{/if}

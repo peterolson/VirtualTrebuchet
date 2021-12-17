@@ -101,4 +101,10 @@
 	img {
 		margin: 16px;
 	}
+
+	@media (max-width: 725px) {
+		.container {
+			flex-direction: column;
+		}
+	}
 </style>

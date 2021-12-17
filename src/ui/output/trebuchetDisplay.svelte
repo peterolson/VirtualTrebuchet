@@ -84,14 +84,14 @@
 		};
 	}
 
-	function l(length, minPixels = 3) {
+	function l(length, minPixels = 4) {
 		const canvasWidth = dimensions[0];
 		const width = max[0] - min[0];
 		const pixelWidth = width / canvasWidth;
 		return Math.max(length, minPixels * pixelWidth);
 	}
 
-	function p(percent, minPixels = 3) {
+	function p(percent, minPixels = 4) {
 		const smallestDimension = Math.min(max[0] - min[0], max[1] - min[1]);
 		const length = Math.min((percent / 100) * smallestDimension, (percent * heightOfPivot) / 10);
 		return l(length, minPixels);
@@ -109,6 +109,8 @@
 		}
 		return d;
 	}
+
+	console.log(availableHeight, availableWidth);
 </script>
 
 <svg {...svgAttributes()} xmlns="http://www.w3.org/2000/svg">
