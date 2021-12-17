@@ -1,38 +1,28 @@
-# create-svelte
+# Virtual Trebuchet
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte);
+This repository contains the code for the [Virtual Trebuchet](https://virtualtrebuchet.com/) website.
 
-## Creating a project
+Virtual Trebuchet is a static website that doesn't require any server-side code.
 
-If you're seeing this, you've probably already done this step. Congrats!
+# Installation
 
-```bash
-# create a new project in the current directory
-npm init svelte@next
+- Make sure that you have [Node.js](https://nodejs.org/) installed.
+- Download or clone this repository.
+- Navigate to the directory containing this repository and run
 
-# create a new project in my-app
-npm init svelte@next my-app
+```
+npm install
 ```
 
-> Note: the `@next` is temporary
+# Run and build
 
-## Developing
+To run in development mode (to watch for file changes and automatically refresh)
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
+```
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
-
-Before creating a production version of your app, install an [adapter](https://kit.svelte.dev/docs#adapters) for your target environment. Then:
-
-```bash
+To build for production (serverless static site with code minified)
+```
 npm run build
 ```
-
-> You can preview the built app with `npm run preview`, regardless of whether you installed an adapter. This should _not_ be used to serve your app in production.
