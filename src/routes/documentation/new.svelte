@@ -4,7 +4,7 @@
 
 <blockquote>
 	<p>
-		• VirtualTrebuchet 2.0 includes documentation of how the simulation works in the
+		• VirtualTrebuchet 2.0 includes documentation about how the simulation works in the
 		<a href="/documentation/explanation">Explanation of Simulation</a>.
 	</p>
 	<p>
@@ -12,8 +12,7 @@
 		share their trebuchet projects.
 	</p>
 	<p>
-		• A <a href="/contact">Contact</a> page has been added where you can ask questions or report
-		bugs.
+		• A <a href="/contact">Contact</a> page has been added where you can ask questions or report bugs.
 	</p>
 	<p>
 		• New output has been included in the <a href="/">Simulator</a>, including time, efficiency, and
@@ -28,13 +27,12 @@
 	<p>• The input bar has been simplified to make it easier to use.</p>
 	<p>
 		• Saving a trebuchet configuration is now done by copying a URL rather than by saving anything
-		to your computer. See the <a href="/documentation/Save">Saving Your Trebuchet</a> section for
-		more information.
+		to your computer. See the <a href="/documentation/Save">Saving Your Trebuchet</a> section for more
+		information.
 	</p>
 	<p>
 		• The simulation in VirtualTrebuchet 2.0 is now more sophisticated in calculating air
 		resistance. See the
-		<a href="/documentation/explanation/ProjectileDrag">Projectile Drag</a> documentation for
-		details.
+		<a href="/documentation/explanation/ProjectileDrag">Projectile Drag</a> documentation for details.
 	</p>
 </blockquote>
