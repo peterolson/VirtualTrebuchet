@@ -1,9 +1,5 @@
 <h1>Frequently Asked Questions</h1>
 
-<p><strong>What is new in VirtualTrebuchet 2.0?</strong></p>
-
-<p>See <a href="/documentation/new">New in VirtualTrebuchet 2.0</a>.</p>
-
 <p>
 	<strong
 		>I am building a trebuchet for a school project. Can you help me design my trebuchet?</strong
