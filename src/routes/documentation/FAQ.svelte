@@ -7,7 +7,7 @@
 </p>
 
 <p>
-	If you have a specific question, I will usually answer it, but I will not do any general design or
+	No. If you have a specific question, I will usually answer it, but I will not do any general design or
 	optimization work for you.
 </p>
 
