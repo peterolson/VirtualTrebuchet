@@ -7,6 +7,7 @@
 	import PreviewTrebuchet from '../output/previewTrebuchet.svelte';
 	import { page } from '$app/stores';
 	import Welcome from './welcome.svelte';
+	import { browser } from '$app/env';
 
 	let simulator: Comlink.Remote<(inputs: Record<string, number>) => SimulatorOutput>;
 	let output: SimulatorOutput;
@@ -44,7 +45,9 @@
 
 <main class:hidden={$page.path !== '/'}>
 	<div id="input">
-		<Inputs {onChangeInputs} {onSubmit} />
+		{#key browser && window.location.search}
+			<Inputs {onChangeInputs} {onSubmit} />
+		{/key}
 	</div>
 	<div id="output">
 		{#if showPreview}
