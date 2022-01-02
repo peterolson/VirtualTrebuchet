@@ -45,9 +45,7 @@
 
 <main class:hidden={$page.path !== '/'}>
 	<div id="input">
-		{#key $page.query}
-			<Inputs {onChangeInputs} {onSubmit} />
-		{/key}
+		<Inputs {onChangeInputs} {onSubmit} />
 	</div>
 	<div id="output">
 		{#if showPreview}
