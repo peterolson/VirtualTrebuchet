@@ -45,7 +45,7 @@
 
 <main class:hidden={$page.path !== '/'}>
 	<div id="input">
-		{#key browser && window.location.search}
+		{#key $page.query}
 			<Inputs {onChangeInputs} {onSubmit} />
 		{/key}
 	</div>
