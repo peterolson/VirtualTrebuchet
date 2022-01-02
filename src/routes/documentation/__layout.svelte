@@ -34,7 +34,6 @@
 			</button>
 		</div>
 		<ul bind:this={linksNode}>
-			<Link href="/documentation/new">New in VirtualTrebuchet 2.0</Link>
 			<Link href="/documentation/about">About Us</Link>
 			<Link href="/documentation/FAQ">FAQ</Link>
 			<Link href="/documentation/inputs">Input Descriptions</Link>
