@@ -95,8 +95,7 @@
 			protocol = window.location.protocol;
 		}
 		const host = $page.host;
-		const part = $page.path;
-		const url = `${protocol}//${host}${part}?${query}`;
+		const url = `${protocol}//${host}/?${query}`;
 		link.set(url);
 		return url;
 	}

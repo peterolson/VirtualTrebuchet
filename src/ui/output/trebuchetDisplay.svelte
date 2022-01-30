@@ -109,8 +109,6 @@
 		}
 		return d;
 	}
-
-	console.log(availableHeight, availableWidth);
 </script>
 
 <svg {...svgAttributes()} xmlns="http://www.w3.org/2000/svg">
