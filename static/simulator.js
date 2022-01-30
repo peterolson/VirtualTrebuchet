@@ -177,7 +177,7 @@ function simulator(inputs) {
 		if (HeightOfPivot + results.CartesianPoints.Projectile[0][1] > 0) Stage = 2; // This deals with the case where the pivot is so heigh that the projectile can't reach the ground.
 
 		let LoopNumber = 0;
-		let LoopLimit = 100000;
+		let LoopLimit = 500000;
 
 		while (LoopNumber < LoopLimit) {
 			LoopNumber = LoopNumber + 1;
@@ -305,12 +305,18 @@ function simulator(inputs) {
 
 		// --- Check Results for Errors ---
 		let ArmSlingPoint_y = [];
+		let Projectile_y = [];
 		let Weight_y = [];
 
 		for (let i = 0; i < results.CartesianPoints.ArmSlingPoint.length; i++)
 			ArmSlingPoint_y.push(results.CartesianPoints.ArmSlingPoint[i][1]);
 		if (Math.min(...ArmSlingPoint_y) < -HeightOfPivot)
 			results.ErrorMessages.push('The trebuchet arm went through the ground.');
+
+		for (let i = 0; i < results.CartesianPoints.Projectile.length; i++)
+			Projectile_y.push(results.CartesianPoints.Projectile[i][1]);
+		if (Math.min(...Projectile_y) < -HeightOfPivot)
+			results.ErrorMessages.push('The projectile went through the ground.');
 
 		for (let i = 0; i < results.CartesianPoints.WeightCG.length; i++)
 			Weight_y.push(results.CartesianPoints.WeightCG[i][1]);
