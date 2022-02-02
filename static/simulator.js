@@ -313,9 +313,9 @@ function simulator(inputs) {
 		if (Math.min(...ArmSlingPoint_y) < -HeightOfPivot)
 			results.ErrorMessages.push('The trebuchet arm went through the ground.');
 
-		for (let i = 0; i < results.CartesianPoints.Projectile.length; i++)
+		for (let i = 0; i < results.CartesianPoints.Projectile.length-1; i++)
 			Projectile_y.push(results.CartesianPoints.Projectile[i][1]);
-		if (Math.min(...Projectile_y) < -HeightOfPivot)
+		if (Math.min(...Projectile_y) < -1.001*HeightOfPivot)
 			results.ErrorMessages.push('The projectile went through the ground.');
 
 		for (let i = 0; i < results.CartesianPoints.WeightCG.length; i++)
