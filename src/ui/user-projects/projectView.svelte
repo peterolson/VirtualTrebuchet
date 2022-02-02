@@ -109,7 +109,10 @@
 			</tr>
 			<tr>
 				<td colspan="2" class="center">
-					<a href={userProject.link} on:click={() => setTimeout(() => window.location.reload())}>
+					<a
+						href={userProject.link}
+						on:click={() => setTimeout(() => window.location.reload(), 500)}
+					>
 						Link to simulation
 					</a>
 				</td>
