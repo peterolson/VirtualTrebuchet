@@ -129,6 +129,14 @@
 		stroke-dasharray={`${p(0.25)},${p(0.25)}`}
 	/>
 	<circle cx={Projectile[0]} cy={Projectile[1]} r={l(projectileDiameter / 2)} fill="#E83" />
+	<circle cx={200} cy={-heightOfPivot} r={.5} fill="#000" />
+	{#if Projectile[0] > 199.9}
+		{#if Projectile[0] < 200.1}
+			{#if Projectile[1] < .1}
+				<circle cx={200} cy={-heightOfPivot} r={10} fill="#F00" />
+			{/if}
+		{/if}
+	{/if}
 </svg>
 
 <style>
