@@ -47,7 +47,7 @@
 		min[1] -= 0.1;
 		max[0] += 0.1;
 		max[1] += 0.1;
-		let width = Math.abs(max[0] - min[0]),
+		let width = 1.1 * Math.abs(max[0] - min[0]),
 			height = Math.abs(max[1] - min[1]);
 		const aspect = width / height;
 		if (width >= height) {
@@ -129,13 +129,13 @@
 		stroke-dasharray={`${p(0.25)},${p(0.25)}`}
 	/>
 	<circle cx={Projectile[0]} cy={Projectile[1]} r={l(projectileDiameter / 2)} fill="#E83" />
-	<circle cx={200} cy={-heightOfPivot} r={.5} fill="#000" />
-	{#if Projectile[0] > 199.9}
-		{#if Projectile[0] < 200.1}
-			{#if Projectile[1] < .1}
-				<circle cx={200} cy={-heightOfPivot} r={10} fill="#F00" />
-			{/if}
-		{/if}
+	<image href="/Target Images/Bottle.png" width=.3 transform="translate(-.15 .07) scale(1 -1)" x={10} y={heightOfPivot}/>
+	{#if Projectile[0] > 9.9 && Projectile[0] < 10.1 && Projectile[1] < .1}
+		<image href="/Target Images/Broken Bottle.png" width=.3 transform="translate(-.15 .07) scale(1 -1)" x={10} y={heightOfPivot}/>
+	{/if}
+	<image href="/Target Images/Castle.png" width=60 transform="translate(-30 32) scale(1 -1)" x={530} y={heightOfPivot}/>
+	{#if Projectile[0] > 500 && Projectile[0] < 560 && Projectile[1] < 5}
+		<image href="/Target Images/Castle_Broken.png" width=60 transform="translate(-30 32) scale(1 -1)" x={530} y={heightOfPivot}/>
 	{/if}
 </svg>
 

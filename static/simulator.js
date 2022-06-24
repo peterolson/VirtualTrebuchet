@@ -177,7 +177,7 @@ function simulator(inputs) {
 		if (HeightOfPivot + results.CartesianPoints.Projectile[0][1] > 0) Stage = 2; // This deals with the case where the pivot is so heigh that the projectile can't reach the ground.
 
 		let LoopNumber = 0;
-		let LoopLimit = 500000;
+		let LoopLimit = 5000000;
 
 		while (LoopNumber < LoopLimit) {
 			LoopNumber = LoopNumber + 1;
@@ -222,7 +222,7 @@ function simulator(inputs) {
 				}
 
 				if (!Transition2to3)
-					transition = TransitionCheck(MotionVariables, MotionVariablesNew, Stage, h1);
+					transition = TransitionCheck(MotionVariables, MotionVariablesNew, Stage, h1, time);
 
 				if (transition.condition) {
 					h = transition.StepSize;
@@ -288,7 +288,7 @@ function simulator(inputs) {
 			} else if (Stage == 2 && time > 20) {
 				results.ErrorMessages.push('The simulation timed out in Stage 2.');
 				break;
-			} else if (Stage == 3 && time > 3 * 60) {
+			} else if (Stage == 3 && time > 5 * 60) {
 				results.ErrorMessages.push('The simulation timed out in Stage 3.');
 				break;
 			}
@@ -313,7 +313,7 @@ function simulator(inputs) {
 		if (Math.min(...ArmSlingPoint_y) < -HeightOfPivot)
 			results.ErrorMessages.push('The trebuchet arm went through the ground.');
 
-		for (let i = 0; i < results.CartesianPoints.Projectile.length-1; i++)
+		for (let i = 0; i < results.CartesianPoints.Projectile.length-3; i++)
 			Projectile_y.push(results.CartesianPoints.Projectile[i][1]);
 		if (Math.min(...Projectile_y) < -1.001*HeightOfPivot)
 			results.ErrorMessages.push('The projectile went through the ground.');
@@ -1114,7 +1114,7 @@ function simulator(inputs) {
 		return TransitionResults;
 	}
 
-	function TransitionCheck(MotionVariables, MotionVariables5thOrder, Stage, h) {
+	function TransitionCheck(MotionVariables, MotionVariables5thOrder, Stage, h, time) {
 		let yes = false;
 		let StepSize = h;
 		let transition = new Transition(yes, StepSize);
