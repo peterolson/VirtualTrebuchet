@@ -1,3 +1,3 @@
 /// <reference types="@sveltejs/kit" />
 
-declare let _gaq; // Google analytics
+declare let gtag; // Google analytics

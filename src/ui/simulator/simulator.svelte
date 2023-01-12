@@ -36,8 +36,12 @@
 		console.log('input', input);
 		output = await simulator(input);
 		console.log('output', output);
-		if (typeof _gaq !== 'undefined') {
-			_gaq.push(['_trackEvent', 'Simulation', 'Submit', input?.units, +new Date() - start]);
+		if (typeof gtag !== 'undefined') {
+			gtag('event', 'Simulation', {
+				action: 'Submit',
+				units: input?.units,
+				time: +new Date() - start
+			});
 		}
 		return output;
 	}
