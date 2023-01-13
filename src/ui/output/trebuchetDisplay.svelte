@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { logEvent } from '../../analytics';
 	import type { Point } from './output.types';
 
 	export let minMax: [Point, Point];
@@ -72,9 +73,23 @@
 	}
 
 	let { min, max, dimensions } = getSizing(minMax);
+	let hitBottle = false;
+	let hitCastle = false;
 
 	$: {
 		({ min, max, dimensions } = getSizing(minMax));
+		hitBottle = Projectile[0] > 9.9 && Projectile[0] < 10.1 && Projectile[1] < 0.1;
+		hitCastle = Projectile[0] > 500 && Projectile[0] < 560 && Projectile[1] < 5;
+		if (hitBottle) {
+			logEvent('Collision', {
+				target: 'Bottle'
+			});
+		}
+		if (hitCastle) {
+			logEvent('Collision', {
+				target: 'Castle'
+			});
+		}
 	}
 
 	function svgAttributes() {
@@ -129,13 +144,37 @@
 		stroke-dasharray={`${p(0.25)},${p(0.25)}`}
 	/>
 	<circle cx={Projectile[0]} cy={Projectile[1]} r={l(projectileDiameter / 2)} fill="#E83" />
-	<image href="/Target Images/Bottle.png" width=.3 transform="translate(-.15 .07) scale(1 -1)" x={10} y={heightOfPivot}/>
-	{#if Projectile[0] > 9.9 && Projectile[0] < 10.1 && Projectile[1] < .1}
-		<image href="/Target Images/Broken Bottle.png" width=.3 transform="translate(-.15 .07) scale(1 -1)" x={10} y={heightOfPivot}/>
+	<image
+		href="/Target Images/Bottle.png"
+		width=".3"
+		transform="translate(-.15 .07) scale(1 -1)"
+		x={10}
+		y={heightOfPivot}
+	/>
+	{#if hitBottle}
+		<image
+			href="/Target Images/Broken Bottle.png"
+			width=".3"
+			transform="translate(-.15 .07) scale(1 -1)"
+			x={10}
+			y={heightOfPivot}
+		/>
 	{/if}
-	<image href="/Target Images/Castle.png" width=60 transform="translate(-30 32) scale(1 -1)" x={530} y={heightOfPivot}/>
-	{#if Projectile[0] > 500 && Projectile[0] < 560 && Projectile[1] < 5}
-		<image href="/Target Images/Castle_Broken.png" width=60 transform="translate(-30 32) scale(1 -1)" x={530} y={heightOfPivot}/>
+	<image
+		href="/Target Images/Castle.png"
+		width="60"
+		transform="translate(-30 32) scale(1 -1)"
+		x={530}
+		y={heightOfPivot}
+	/>
+	{#if hitCastle}
+		<image
+			href="/Target Images/Castle_Broken.png"
+			width="60"
+			transform="translate(-30 32) scale(1 -1)"
+			x={530}
+			y={heightOfPivot}
+		/>
 	{/if}
 </svg>
 

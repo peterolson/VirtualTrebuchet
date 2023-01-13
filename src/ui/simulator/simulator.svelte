@@ -8,6 +8,7 @@
 	import { page } from '$app/stores';
 	import Welcome from './welcome.svelte';
 	import { browser } from '$app/env';
+	import { logEvent } from '../../analytics';
 
 	let simulator: Comlink.Remote<(inputs: Record<string, number>) => SimulatorOutput>;
 	let output: SimulatorOutput;
@@ -36,13 +37,11 @@
 		console.log('input', input);
 		output = await simulator(input);
 		console.log('output', output);
-		if (typeof gtag !== 'undefined') {
-			gtag('event', 'Simulation', {
-				action: 'Submit',
-				units: input?.units,
-				time: +new Date() - start
-			});
-		}
+		logEvent('Simulation', {
+			action: 'Submit',
+			units: input?.units,
+			time: +new Date() - start
+		});
 		return output;
 	}
 </script>
